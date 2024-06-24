@@ -1,0 +1,30 @@
+[global_config]
+  dbus = False
+  tab_position = hidden
+  scroll_tabbar = True
+  homogeneous_tabbar = False
+[keybindings]
+  new_tab = <Primary>t
+  close_term = <Primary>w
+  next_tab = <Alt>Tab
+[profiles]
+  [[default]]
+    icon_bell = False
+    background_darkness = 0.9
+    background_type = transparent
+    foreground_color = "#9c66b5"
+    show_titlebar = False
+    scrollbar_position = hidden
+    palette = "#000000:#cd0000:#3465a4:#3465a4:#3465a4:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#9c66b5:#ff00ff:#00ffff:#ffffff"
+    bold_is_bright = True
+    title_hide_sizetext = True
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]
