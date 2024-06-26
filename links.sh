@@ -8,5 +8,5 @@ ln -s ~/dotfiles/nvim ~/.config/nvim
 ln -s ~/dotfiles/picom ~/.config/picom
 ln -s ~/dotfiles/neofetch ~/.config/neofetch
 ln -s ~/dotfiles/terminator ~/.config/terminator
-ln -s ~/dotfiles/nixpkgs ~/.config/nixpkgs
+ln -s ~/dotfiles/home-manager ~/.config/home-manager
 sudo ln -s ~/dotfiles/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
