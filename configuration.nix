@@ -136,9 +136,11 @@
             brightnessctl
             cargo
             cmake
+            discord
 	    distrobox
             docker
 	    firefox
+            freerdp3
             fzf
             gcc
 	    gh
@@ -162,6 +164,7 @@
             ninja
             networkmanagerapplet
 	    neovim
+            nodejs_20
 	    oh-my-zsh
             parsec-bin
             pipewire
@@ -172,6 +175,7 @@
             sddm
             slurp
 	    steam
+            swaybg
 	    swaylock-effects
 	    terminator
             tldr
@@ -187,6 +191,7 @@
             xwayland
 	    zsh
 	];
+        programs.steam.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
