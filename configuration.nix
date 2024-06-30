@@ -159,7 +159,9 @@
             libvirt
             lsd
             lxappearance
+            lxqt.lxqt-policykit
             meson
+            # minecraft
             fastfetch 
             ninja
             networkmanagerapplet
@@ -168,7 +170,7 @@
 	    oh-my-zsh
             parsec-bin
             pipewire
-            polkit_gnome
+            # polkit_gnome
             qemu_kvm
 	    rofi
             rustup
@@ -181,6 +183,7 @@
             tldr
             unzip
             virt-manager
+            vmware-workstation
             vscode
             waybar
             wget
@@ -188,10 +191,12 @@
 	    wlsunset
             wofi
 	    xfce.thunar
+            xfce.xfwm4
             xwayland
 	    zsh
 	];
         programs.steam.enable = true;
+        virtualisation.vmware.host.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
