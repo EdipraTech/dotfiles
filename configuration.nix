@@ -133,6 +133,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 	environment.systemPackages = with pkgs; [
+            brave
             brightnessctl
             cargo
             cmake
@@ -170,6 +171,7 @@
 	    oh-my-zsh
             parsec-bin
             pipewire
+            prism # minecraft launcher
             # polkit_gnome
             qemu_kvm
 	    rofi
