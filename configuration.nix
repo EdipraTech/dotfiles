@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -11,8 +11,9 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/vda";
+  boot.loader.grub.useOSProber = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -23,8 +24,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  boot.supportedFilesystems = [ "ntfs" ];
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -44,53 +43,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the XFCE Desktop Environment.
-  services.xserver.desktopManager.xfce.enable = true;
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
 
-  # Enable the hyprland Desktop Environment
-    programs.hyprland = {
-        enable = true;
-        xwayland = {
-            enable = true;
-        };
-    };
-
-  # Zsh Shell
-    users.defaultUserShell=pkgs.zsh;
-    programs.zsh.enable = true;
-    #programs.zsh = {
-    #  enable = true;
-    #  shellAliases = {
-    #    vim = "nvim";
-    #	ll = "ls -la";
-    #  };
-    #    autosuggestions.enable = true;
-    #   ohMyZsh = {
-    #	    theme = "refined";
-#	};
-#    };
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
-    services.xserver = {
-        xkb.layout = "us";
-        xkb.variant = "";
-        enable = true;
-    }; 
-    services.displayManager.sddm = {
-	enable = true;
+  services.xserver = {
+    xkb = {
+    	layout = "us";
+    	variant = "";
     };
-    
-    # Docker
-    virtualisation.docker.enable = true;
-    virtualisation.docker.rootless = {
-        enable = true;
-        setSocketVariable = true;
-    };
-
-  # Virtualization
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -114,15 +80,19 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.zsh.enable = true;
+  programs.wireshark.enable = true;
+  users.groups.wireshark = {};
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.edipratech = {
-        isNormalUser = true;
-        description = "Daniel Arpide";
-        extraGroups = [ "networkmanager" "wheel" "video" "kvm" "libvirtd" "docker" ]; # Enable ‘sudo’ for the user.
-	shell = pkgs.zsh;
-            packages = with pkgs; [
-            ];
-    };
+  users.users.nixos = {
+    isNormalUser = true;
+    description = "nixos";
+    extraGroups = [ "networkmanager" "wheel" "wireshark"];
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+    ];
+  };
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -132,73 +102,36 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-	environment.systemPackages = with pkgs; [
-            brave
-            brightnessctl
-            cargo
-            cmake
-            discord
-	    distrobox
-            docker
-	    firefox
-            freerdp3
-            fzf
-            gcc
-	    gh
-            gimp
-            git
-            glibc
-            go
-            gnome.gnome-font-viewer
-            gparted
-            grim
-            gtk3
-	    home-manager
-            hyprland
-            libreoffice
-            libsecret
-            libvirt
-            lsd
-            lxappearance
-            lxqt.lxqt-policykit
-            meson
-            # minecraft
-            fastfetch 
-            ninja
-            networkmanagerapplet
-	    neovim
-            nodejs_20
-	    oh-my-zsh
-            parsec-bin
-            pipewire
-            prism # minecraft launcher
-            # polkit_gnome
-            qemu_kvm
-	    rofi
-            rustup
-            sddm
-            slurp
-	    steam
-            swaybg
-	    swaylock-effects
-	    terminator
-            tldr
-            unzip
-            virt-manager
-            vmware-workstation
-            vscode
-            waybar
-            wget
-            wireplumber
-	    wlsunset
-            wofi
-	    xfce.thunar
-            xfce.xfwm4
-            xwayland
-	    zsh
-	];
-        programs.steam.enable = true;
-        virtualisation.vmware.host.enable = true;
+  environment.systemPackages = with pkgs; [
+  	aircrack-ng
+	armitage
+	autopsy
+	burp
+	caido
+	crunch
+	cyberchef
+	dirbuster
+	fastfetch
+	ffuf
+	git
+	gvm-tools
+	hashcat
+	john
+	metasploit
+	neovim
+	nmap
+	seclists
+	sqlmap
+	suricata
+	tcpdump
+	thc-hydra
+	wireshark
+	yara
+	zap
+	zeek
+	zeekscript
+	zsh
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
