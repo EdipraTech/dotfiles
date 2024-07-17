@@ -121,6 +121,7 @@
 	neovim
 	nmap
 	seclists
+	spice-vdagent
 	sqlmap
 	suricata
 	tcpdump
@@ -132,6 +133,9 @@
 	zeekscript
 	zsh
   ];
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
