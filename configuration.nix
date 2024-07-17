@@ -113,6 +113,7 @@
 	dirbuster
 	fastfetch
 	ffuf
+	gcc
 	git
 	gvm-tools
 	hashcat
