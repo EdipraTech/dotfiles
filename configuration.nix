@@ -117,6 +117,7 @@
 	git
 	gvm-tools
 	hashcat
+	home-manager
 	john
 	metasploit
 	neovim
