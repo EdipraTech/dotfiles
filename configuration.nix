@@ -121,6 +121,7 @@
 	metasploit
 	neovim
 	nmap
+	openvpn
 	seclists
 	spice-vdagent
 	sqlmap
