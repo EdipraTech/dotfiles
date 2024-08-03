@@ -119,6 +119,7 @@
 	hashcat
 	home-manager
 	john
+	libsForQt5.bismuth
 	metasploit
 	neovim
 	nmap
@@ -129,6 +130,7 @@
 	suricata
 	tcpdump
 	thc-hydra
+	whatweb
 	wireshark
 	yara
 	zap
