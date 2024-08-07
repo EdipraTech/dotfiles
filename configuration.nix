@@ -114,11 +114,15 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # WIRESHARK
+  programs.wireshark.enable = true;
+  users.groups.wireshark = {};
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.edipratech = {
         isNormalUser = true;
         description = "Daniel Arpide";
-        extraGroups = [ "networkmanager" "wheel" "video" "kvm" "libvirtd" "docker" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [ "networkmanager" "wheel" "video" "kvm" "libvirtd" "docker" "wireshark" ]; # Enable ‘sudo’ for the user.
 	shell = pkgs.zsh;
             packages = with pkgs; [
             ];
@@ -136,7 +140,9 @@
             brave
             brightnessctl
             cargo
+            # ciscoPacketTracer8
             cmake
+            davinci-resolve
             discord
 	    distrobox
             docker
@@ -155,41 +161,49 @@
             gtk3
 	    home-manager
             hyprland
-            libreoffice
+            libreoffice-fresh
             libsecret
             libvirt
             lsd
+            lutris
             lxappearance
             lxqt.lxqt-policykit
             meson
             # minecraft
+            netcat
             fastfetch 
             ninja
             networkmanagerapplet
 	    neovim
             nodejs_20
 	    oh-my-zsh
+            openvpn
             parsec-bin
             pipewire
             prism # minecraft launcher
             # polkit_gnome
+            python3
             qemu_kvm
 	    rofi
             rustup
             sddm
             slurp
+            spotify
 	    steam
             swaybg
 	    swaylock-effects
 	    terminator
+            thunderbird
             tldr
             unzip
             virt-manager
+            virtiofsd
             vmware-workstation
             vscode
             waybar
             wget
             wireplumber
+            wireshark
 	    wlsunset
             wofi
 	    xfce.thunar
@@ -199,6 +213,11 @@
 	];
         programs.steam.enable = true;
         virtualisation.vmware.host.enable = true;
+        virtualisation.spiceUSBRedirection.enable = true;
+
+        # Logitech Unifying
+        hardware.logitech.wireless.enable = true;
+        hardware.logitech.wireless.enableGraphical = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
