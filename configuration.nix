@@ -44,10 +44,13 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the XFCE Desktop Environment.
-  services.xserver.desktopManager.xfce.enable = true;
+  # Enable I3 & XFCE
+  services.xserver = {
+    desktopManager.xfce.enable = true;
+    windowManager.i3.enable = true;
+  };
 
-  # Enable the hyprland Desktop Environment
+  # Enable Hyprland
     programs.hyprland = {
         enable = true;
         xwayland = {
@@ -156,11 +159,13 @@
             glibc
             go
             gnome.gnome-font-viewer
+            gnome-network-displays
             gparted
             grim
             gtk3
 	    home-manager
             hyprland
+            i3
             libreoffice-fresh
             libsecret
             libvirt
@@ -172,10 +177,12 @@
             # minecraft
             netcat
             fastfetch 
+            # miraclecast
             ninja
             networkmanagerapplet
 	    neovim
             nodejs_20
+            obs-studio
 	    oh-my-zsh
             openvpn
             parsec-bin
@@ -191,6 +198,7 @@
             spotify
 	    steam
             swaybg
+            swayidle
 	    swaylock-effects
 	    terminator
             thunderbird
@@ -219,6 +227,23 @@
         hardware.logitech.wireless.enable = true;
         hardware.logitech.wireless.enableGraphical = true;
 
+  # logind settings
+  services.logind = {
+    lidSwitchDocked = "suspend";
+  };
+
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      tapping = true;
+      naturalScrolling = true;
+      scrollMethod = "twofinger";
+      disableWhileTyping = true;
+      clickMethod = "clickfinger";
+    };
+  };
+  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -236,7 +261,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
