@@ -143,7 +143,7 @@
             brave
             brightnessctl
             cargo
-            # ciscoPacketTracer8
+            ciscoPacketTracer8
             cmake
             davinci-resolve
             discord
