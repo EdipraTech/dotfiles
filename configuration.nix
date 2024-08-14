@@ -150,6 +150,7 @@
 	    distrobox
             docker
 	    firefox
+            fprintd
             freerdp3
             fzf
             gcc
@@ -182,7 +183,7 @@
             networkmanagerapplet
 	    neovim
             nodejs_20
-            obs-studio
+            # obs-studio
 	    oh-my-zsh
             openvpn
             parsec-bin
@@ -227,6 +228,9 @@
         hardware.logitech.wireless.enable = true;
         hardware.logitech.wireless.enableGraphical = true;
 
+        # Fprint Unlock
+        services.fprintd.enable = true;
+
   # logind settings
   services.logind = {
     lidSwitchDocked = "suspend";
@@ -261,7 +265,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
