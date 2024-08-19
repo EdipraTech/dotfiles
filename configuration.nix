@@ -47,7 +47,10 @@
   # Enable I3 & XFCE
   services.xserver = {
     desktopManager.xfce.enable = true;
-    windowManager.i3.enable = true;
+  };
+  services.xserver.windowManager.dwm.enable = true;
+  services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
+    src = ./DWM;
   };
 
   # Enable Hyprland
@@ -152,6 +155,7 @@
 	    firefox
             fprintd
             freerdp3
+            fwupd
             fzf
             gcc
 	    gh
@@ -161,11 +165,12 @@
             go
             gnome.gnome-font-viewer
             gnome-network-displays
+            gnumake
             gparted
             grim
             gtk3
-	    home-manager
             hyprland
+            hyprshade
             i3
             libreoffice-fresh
             libsecret
@@ -178,11 +183,14 @@
             # minecraft
             netcat
             fastfetch 
+            feh
             # miraclecast
+            moonlight-qt
             ninja
             networkmanagerapplet
 	    neovim
             nodejs_20
+            npins
             # obs-studio
 	    oh-my-zsh
             openvpn
@@ -231,9 +239,29 @@
         # Fprint Unlock
         services.fprintd.enable = true;
 
+        # FWUPD
+        services.fwupd.enable = true;
+
+        # ZSH
+  programs.zsh = {
+    # enable = true;
+    shellAliases = {
+      vim = "nvim";
+      ll = "ls -la";
+      clc = "clear";
+    };
+    enableCompletion = true;
+    ohMyZsh = {
+      enable = true;
+      theme = "strug";
+    };
+  };
+
+
   # logind settings
   services.logind = {
     lidSwitchDocked = "suspend";
+    lidSwitch = "suspend";
   };
 
   services.libinput = {
@@ -246,6 +274,14 @@
       clickMethod = "clickfinger";
     };
   };
+
+  # Suspend
+  # boot.kernelParams = [ "mem_sleep_default=deep" ];
+  # suspend-then-hibernate
+  # systemd.sleep.extraConfig = ''
+  #   HibernateDelaySec=30m
+  #   SuspendState=mem
+  # '';
   
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -6,10 +6,10 @@ function start(){
 	temp_low=${temp_low:-"4000"}
 	temp_high=${temp_high:-"6500"}
 	duration=${duration:-"900"}
-	sunrise=${sunrise:-"07:00"}
-	sunset=${sunset:-"19:00"}
-	longitude=${longitude:-65}
-	latitude=${latitude:-65}
+	sunrise=${sunrise:-"11:00"}
+	sunset=${sunset:-"12:00"}
+	longitude=${longitude:-71}
+	latitude=${latitude:42}
 	location=${location:-"off"}
  
 	if [ "${location}" = "on" ]; 
