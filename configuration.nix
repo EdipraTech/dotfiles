@@ -114,15 +114,19 @@
 	fastfetch
 	ffuf
 	gcc
+	gh
 	git
+	gobuster
 	gvm-tools
 	hashcat
-	home-manager
+	inetutils
 	john
 	libsForQt5.bismuth
 	metasploit
 	neovim
+	netcat-gnu
 	nmap
+	openssl
 	openvpn
 	seclists
 	spice-vdagent
@@ -131,7 +135,9 @@
 	tcpdump
 	thc-hydra
 	whatweb
+	wget
 	wireshark
+	# wordlists
 	yara
 	zap
 	zeek
