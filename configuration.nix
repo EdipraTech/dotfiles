@@ -50,7 +50,7 @@
   };
   services.xserver.windowManager.dwm.enable = true;
   services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-    src = ./DWM;
+    src = ./DWMCustom;
   };
 
   # Enable Hyprland
@@ -140,9 +140,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Dark Theme
+  environment.variables.GTK_THEME = "Adwaita:dark";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 	environment.systemPackages = with pkgs; [
+            blueman
             brave
             brightnessctl
             cargo
@@ -155,6 +159,7 @@
 	    firefox
             fprintd
             freerdp3
+            freetube
             fwupd
             fzf
             gcc
@@ -195,6 +200,8 @@
 	    oh-my-zsh
             openvpn
             parsec-bin
+            pavucontrol
+            pcsx2
             pipewire
             prism # minecraft launcher
             # polkit_gnome
@@ -235,6 +242,9 @@
         # Logitech Unifying
         hardware.logitech.wireless.enable = true;
         hardware.logitech.wireless.enableGraphical = true;
+
+        # Bluetooth
+        hardware.bluetooth.enable = true;
 
         # Fprint Unlock
         services.fprintd.enable = true;
