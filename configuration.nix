@@ -146,11 +146,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 	environment.systemPackages = with pkgs; [
+            auto-cpufreq
             blueman
             brave
             brightnessctl
             cargo
-            ciscoPacketTracer8
+            #ciscoPacketTracer8
             cmake
             davinci-resolve
             discord

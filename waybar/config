@@ -103,6 +103,7 @@
     },
     "cpu": {
         "format": "{usage}% ",
+        "format-alt": "{avg_frequency} GHz",
         "tooltip": false
     },
     "memory": {
