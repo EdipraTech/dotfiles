@@ -151,12 +151,13 @@
             brave
             brightnessctl
             cargo
-            #ciscoPacketTracer8
+            ciscoPacketTracer8
             cmake
-            davinci-resolve
             discord
 	    distrobox
             docker
+            fastfetch 
+            feh
 	    firefox
             fprintd
             freerdp3
@@ -177,19 +178,18 @@
             gtk3
             hyprland
             hyprshade
-            i3
+            kicad
+            krita
             libreoffice-fresh
             libsecret
+            # libsForQt5.kdenlive
             libvirt
             lsd
             lutris
             lxappearance
             lxqt.lxqt-policykit
             meson
-            # minecraft
             netcat
-            fastfetch 
-            feh
             # miraclecast
             moonlight-qt
             ninja
@@ -197,15 +197,13 @@
 	    neovim
             nodejs_20
             npins
-            # obs-studio
 	    oh-my-zsh
             openvpn
             parsec-bin
             pavucontrol
             pcsx2
             pipewire
-            prism # minecraft launcher
-            # polkit_gnome
+            prismlauncher # minecraft launcher
             python3
             qemu_kvm
 	    rofi
@@ -220,6 +218,7 @@
 	    terminator
             thunderbird
             tldr
+            tor
             unzip
             virt-manager
             virtiofsd
