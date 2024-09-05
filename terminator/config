@@ -18,7 +18,6 @@
     scrollbar_position = hidden
     palette = "#000000:#cd0000:#3465a4:#3465a4:#3465a4:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#9c66b5:#ff00ff:#00ffff:#ffffff"
     use_system_font = False
-    bold_is_bright = True
     title_hide_sizetext = True
 [layouts]
   [[default]]
