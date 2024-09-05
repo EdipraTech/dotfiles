@@ -150,6 +150,7 @@
             blueman
             brave
             brightnessctl
+            btop
             cargo
             ciscoPacketTracer8
             cmake
@@ -176,6 +177,7 @@
             gparted
             grim
             gtk3
+            htop
             hyprland
             hyprshade
             kicad
