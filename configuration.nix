@@ -4,6 +4,12 @@
 
 { inputs, config, pkgs, ... }:
 
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -145,6 +151,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+        nixpkgs.config = {
+            packageOverrides = pkgs: with pkgs; {
+                unstable = import unstableTarball {
+                    config = config.nixpkgs.config;
+                };
+            };
+        };
 	environment.systemPackages = with pkgs; [
             auto-cpufreq
             blueman
@@ -152,13 +165,14 @@
             brightnessctl
             btop
             cargo
-            ciscoPacketTracer8
+            #ciscoPacketTracer8
             cmake
             discord
 	    distrobox
             docker
             fastfetch 
             feh
+            filezilla
 	    firefox
             fprintd
             freerdp3
@@ -166,6 +180,7 @@
             fwupd
             fzf
             gcc
+            geekbench
 	    gh
             gimp
             git
@@ -190,6 +205,7 @@
             lutris
             lxappearance
             lxqt.lxqt-policykit
+            mariadb
             meson
             netcat
             # miraclecast
@@ -207,12 +223,14 @@
             pipewire
             prismlauncher # minecraft launcher
             python3
+            python312Packages.pip
             qemu_kvm
 	    rofi
             rustup
             sddm
             slurp
             spotify
+            sqlite
 	    steam
             swaybg
             swayidle
@@ -220,6 +238,7 @@
 	    terminator
             thunderbird
             tldr
+            tmux
             tor
             unzip
             virt-manager

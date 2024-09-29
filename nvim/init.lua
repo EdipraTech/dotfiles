@@ -162,8 +162,14 @@ require("lazy").setup({
 	-- Use `opts = {}` to force a plugin to be loaded.
 	--
 	--  This is equivalent to:
-	--    require('Comment').setup({})
-
+	--    require('Comment').setup({}):w
+  
+  --'m4xshen/autoclose.nvim'
+  'jiangmiao/auto-pairs',
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter'
+  },
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 
@@ -353,7 +359,6 @@ require("lazy").setup({
 			--
 			-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
 			-- and elegantly composed help section, `:help lsp-vs-treesitter`
-
 			--  This function gets run when an LSP attaches to a particular buffer.
 			--    That is to say, every time a new file is opened that is associated with
 			--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -453,7 +458,7 @@ require("lazy").setup({
 				group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
 				callback = function(event)
 					vim.lsp.buf.clear_references()
-					vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event.buf })
+					-- vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event.buf })
 				end,
 			})
 
@@ -778,6 +783,8 @@ require("lazy").setup({
 		end,
 	},
 
+
+
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
 	-- place them in the correct locations.
@@ -800,7 +807,8 @@ require("lazy").setup({
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
-}, {
+},
+{
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
 		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
