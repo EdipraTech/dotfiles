@@ -9,3 +9,5 @@ ln -s ~/dotfiles/picom ~/.config/picom
 ln -s ~/dotfiles/neofetch ~/.config/neofetch
 ln -s ~/dotfiles/terminator ~/.config/terminator
 sudo ln -s ~/dotfiles/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
+sudo ln -s ~/dotfiles/configuration.nix /etc/nixos/configuration.nix
+sudo ln -s ~/dotfiles/hardware-configuration.nix /etc/nixos/hardware-configuration.nix

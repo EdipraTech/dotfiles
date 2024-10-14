@@ -2,7 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
+
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+in
 
 {
   imports =
@@ -14,7 +20,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixosPC"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -43,35 +49,60 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-  #NVIDIA
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-  services.xserver.videoDrivers = [ "nvidia" ];
-  environment.etc."mkinitcpio.conf".text = "MODULES(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)";
 
-  # sddm
-  services.displayManager.sddm = {
-    enable = true;
+  # Enable I3 & XFCE
+  services.xserver = {
+    desktopManager.xfce.enable = true;
+  };
+  services.xserver.windowManager.dwm.enable = true;
+  services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
+    src = ./DWMCustom;
   };
 
-  # Hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
+  # Enable Hyprland
+    programs.hyprland = {
+        enable = true;
+        xwayland = {
+            enable = true;
+        };
     };
-  };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  # Zsh Shell
+    users.defaultUserShell=pkgs.zsh;
+    programs.zsh.enable = true;
+    #programs.zsh = {
+    #  enable = true;
+    #  shellAliases = {
+    #    vim = "nvim";
+    #	ll = "ls -la";
+    #  };
+    #    autosuggestions.enable = true;
+    #   ohMyZsh = {
+    #	    theme = "refined";
+#	};
+#    };
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+    services.xserver = {
+        xkb.layout = "us";
+        xkb.variant = "";
+        enable = true;
+    }; 
+    services.displayManager.sddm = {
+	enable = true;
+    };
+    
+    # Docker
+    virtualisation.docker.enable = true;
+    virtualisation.docker.rootless = {
+        enable = true;
+        setSocketVariable = true;
+    };
+
+  # Virtualization
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -95,14 +126,19 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # WIRESHARK
+  programs.wireshark.enable = true;
+  users.groups.wireshark = {};
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.edipratech = {
-    isNormalUser = true;
-    description = "Daniel Arpide";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
-  };
+    users.users.edipratech = {
+        isNormalUser = true;
+        description = "Daniel Arpide";
+        extraGroups = [ "networkmanager" "wheel" "video" "kvm" "libvirtd" "docker" "wireshark" ]; # Enable ‘sudo’ for the user.
+	shell = pkgs.zsh;
+            packages = with pkgs; [
+            ];
+    };
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -110,10 +146,20 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Dark Theme
+  environment.variables.GTK_THEME = "Adwaita:dark";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-auto-cpufreq
+        nixpkgs.config = {
+            packageOverrides = pkgs: with pkgs; {
+                unstable = import unstableTarball {
+                    config = config.nixpkgs.config;
+                };
+            };
+        };
+	environment.systemPackages = with pkgs; [
+            auto-cpufreq
             blueman
             brave
             brightnessctl
@@ -124,7 +170,6 @@ auto-cpufreq
             discord
 	    distrobox
             docker
-	    fanctl
             fastfetch 
             feh
             filezilla
@@ -206,7 +251,6 @@ auto-cpufreq
             wireshark
 	    wlsunset
             wofi
-            xdg-desktop-portal-gtk
 	    xfce.thunar
             xfce.xfwm4
             xwayland
@@ -243,6 +287,34 @@ auto-cpufreq
       theme = "strug";
     };
   };
+
+
+  # logind settings
+  services.logind = {
+    lidSwitchDocked = "suspend";
+    lidSwitch = "suspend";
+  };
+
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      tapping = true;
+      naturalScrolling = true;
+      scrollMethod = "twofinger";
+      disableWhileTyping = true;
+      clickMethod = "clickfinger";
+    };
+  };
+
+  # Suspend
+  # boot.kernelParams = [ "mem_sleep_default=deep" ];
+  # suspend-then-hibernate
+  # systemd.sleep.extraConfig = ''
+  #   HibernateDelaySec=30m
+  #   SuspendState=mem
+  # '';
+  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -260,7 +332,7 @@ auto-cpufreq
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
