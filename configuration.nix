@@ -54,10 +54,10 @@ in
   services.xserver = {
     desktopManager.xfce.enable = true;
   };
-  services.xserver.windowManager.dwm.enable = true;
-  services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-    src = ./DWMCustom;
-  };
+  #  services.xserver.windowManager.dwm.enable = true;
+    #services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
+    #  src = ./DWMCustom;
+  #};
 
   # Enable Hyprland
     programs.hyprland = {
@@ -159,135 +159,122 @@ in
             };
         };
 	environment.systemPackages = with pkgs; [
-            auto-cpufreq
-            blueman
-            brave
-            brightnessctl
-            btop
-            cargo
-            #ciscoPacketTracer8
-            cmake
-            discord
-	    distrobox
-            docker
-            fastfetch 
-            feh
-            filezilla
-	    firefox
-            fprintd
-            freerdp3
-            freetube
-            fwupd
-            fzf
-            gcc
-            geekbench
-	    gh
-            gimp
-            git
-            glibc
-            go
-            gnome.gnome-font-viewer
-            gnome-network-displays
-            gnumake
-            gparted
-            grim
-            gtk3
-            htop
-            hyprland
-            hyprshade
-            kicad
-            krita
-            libreoffice-fresh
-            libsecret
-            # libsForQt5.kdenlive
-            libvirt
-            lsd
-            lutris
-            lxappearance
-            lxqt.lxqt-policykit
-            mariadb
-            meson
-            netcat
-            # miraclecast
-            moonlight-qt
-            ninja
-            networkmanagerapplet
-	    neovim
-            nodejs_20
-            npins
-	    oh-my-zsh
-            openvpn
-            parsec-bin
-            pavucontrol
-            pcsx2
-            pipewire
-            prismlauncher # minecraft launcher
-            python3
-            python312Packages.pip
-            qemu_kvm
-	    rofi
-            rustup
-            sddm
-            slurp
-            spotify
-            sqlite
-	    steam
-            swaybg
-            swayidle
-	    swaylock-effects
-	    terminator
-            thunderbird
-            tldr
-            tmux
-            tor
-            unzip
-            virt-manager
-            virtiofsd
-            vmware-workstation
-            vscode
-            waybar
-            wget
-            wireplumber
-            wireshark
-	    wlsunset
-            wofi
-	    xfce.thunar
-            xfce.xfwm4
-            xwayland
-	    zsh
+    auto-cpufreq
+    blueman
+    brave
+    brightnessctl
+    btop
+    cargo
+    ciscoPacketTracer8
+    cmake
+    discord
+    distrobox
+    docker
+    fastfetch 
+    feh
+    filezilla
+    firefox
+    fprintd
+    freerdp3
+    freetube
+    fwupd
+    fzf
+    gcc
+    geekbench
+    gh
+    gimp
+    git
+    glibc
+    go
+    gnome-font-viewer
+    gnome-network-displays
+    gnumake
+    gparted
+    grim
+    gtk3
+    home-manager
+    htop
+    hypridle
+    hyprlock
+    hyprland
+    hyprshade
+    kicad
+    krita
+    libreoffice-fresh
+    libsecret
+    # libsForQt5.kdenlive
+    libvirt
+    lsd
+    lutris
+    lxappearance
+    lxqt.lxqt-policykit
+    mariadb
+    meson
+    netcat
+    # miraclecast
+    moonlight-qt
+    ninja
+    networkmanagerapplet
+    neovim
+    nodejs_20
+    npins
+    oh-my-zsh
+    openvpn
+    parsec-bin
+    pavucontrol
+    pcsx2
+    pipewire
+    prismlauncher # minecraft launcher
+    python3
+    python312Packages.pip
+    qemu_kvm
+    rofi
+    rustup
+    sddm
+    slurp
+    spotify
+    sqlite
+    steam
+    swaybg
+    swayidle
+    swaylock-effects
+    terminator
+    thunderbird
+    tldr
+    tmux
+    tor
+    unzip
+    virt-manager
+    virtiofsd
+    vmware-workstation
+    vscode
+    waybar
+    wget
+    wireplumber
+    wireshark
+    wlsunset
+    wofi
+    xfce.thunar
+    xfce.xfwm4
+    xwayland
+    zsh
 	];
-        programs.steam.enable = true;
-        virtualisation.vmware.host.enable = true;
-        virtualisation.spiceUSBRedirection.enable = true;
+  programs.steam.enable = true;
+  virtualisation.vmware.host.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
-        # Logitech Unifying
-        hardware.logitech.wireless.enable = true;
-        hardware.logitech.wireless.enableGraphical = true;
+  # Logitech Unifying
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
 
-        # Bluetooth
-        hardware.bluetooth.enable = true;
+  # Bluetooth
+  hardware.bluetooth.enable = true;
 
-        # Fprint Unlock
-        services.fprintd.enable = true;
+  # Fprint Unlock
+  services.fprintd.enable = true;
 
-        # FWUPD
-        services.fwupd.enable = true;
-
-        # ZSH
-  programs.zsh = {
-    # enable = true;
-    shellAliases = {
-      vim = "nvim";
-      ll = "ls -la";
-      clc = "clear";
-    };
-    enableCompletion = true;
-    ohMyZsh = {
-      enable = true;
-      theme = "strug";
-    };
-  };
-
+  # FWUPD
+  services.fwupd.enable = true;
 
   # logind settings
   services.logind = {
