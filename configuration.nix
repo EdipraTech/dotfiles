@@ -63,6 +63,24 @@
     };
   };
 
+        # ZSH
+  users.defaultUserShell=pkgs.zsh;
+  programs.zsh = {
+      enable = true;
+      shellAliases = {
+        vim = "nvim";
+        ll = "ls -la";
+        clc = "clear";
+        update = "sudo nixos-rebuild switch";
+      };
+      ohMyZsh = {
+        enable = true;
+        #theme = "strug";
+        plugins = [
+        ];
+      };
+    };
+
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
@@ -72,6 +90,17 @@
     layout = "us";
     variant = "";
   };
+
+  # Docker
+    virtualisation.docker.enable = true;
+    virtualisation.docker.rootless = {
+        enable = true;
+        setSocketVariable = true;
+    };
+
+  # Virtualization
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -85,7 +114,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -95,11 +124,16 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # WIRESHARK
+  programs.wireshark.enable = true;
+  users.groups.wireshark = {};
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edipratech = {
     isNormalUser = true;
     description = "Daniel Arpide";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "kvm" "libvirtd" "docker" "wireshark" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
     ];
   };
@@ -110,17 +144,21 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Dark Theme
+  environment.variables.GTK_THEME = "Adwaita:dark";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-auto-cpufreq
+            auto-cpufreq
             blueman
             brave
             brightnessctl
             btop
             cargo
-            #ciscoPacketTracer8
+            ciscoPacketTracer8
             cmake
+            davinci-resolve
             discord
 	    distrobox
             docker
@@ -147,9 +185,14 @@ auto-cpufreq
             gparted
             grim
             gtk3
+            home-manager
             htop
+            hypridle
             hyprland
+            hyprlock
             hyprshade
+            icon-library
+            jack2
             kicad
             krita
             libreoffice-fresh
@@ -170,6 +213,7 @@ auto-cpufreq
 	    neovim
             nodejs_20
             npins
+            obs-studio
 	    oh-my-zsh
             openvpn
             parsec-bin
@@ -180,6 +224,8 @@ auto-cpufreq
             python3
             python312Packages.pip
             qemu_kvm
+            qjackctl
+            qpwgraph
 	    rofi
             rustup
             sddm
@@ -229,20 +275,9 @@ auto-cpufreq
         # FWUPD
         services.fwupd.enable = true;
 
-        # ZSH
-  programs.zsh = {
-    # enable = true;
-    shellAliases = {
-      vim = "nvim";
-      ll = "ls -la";
-      clc = "clear";
-    };
-    enableCompletion = true;
-    ohMyZsh = {
-      enable = true;
-      theme = "strug";
-    };
-  };
+        # Home Manager
+  #programs.home-manager.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
