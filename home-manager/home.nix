@@ -79,7 +79,7 @@
   #  /etc/profiles/per-user/edipratech/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    
   };
 
   # Let Home Manager install and manage itself.

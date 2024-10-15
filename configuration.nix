@@ -150,132 +150,132 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-            auto-cpufreq
-            blueman
-            brave
-            brightnessctl
-            btop
-            cargo
-            ciscoPacketTracer8
-            cmake
-            davinci-resolve
-            discord
-	    distrobox
-            docker
-	    fanctl
-            fastfetch 
-            feh
-            filezilla
-	    firefox
-            fprintd
-            freerdp3
-            freetube
-            fwupd
-            fzf
-            gcc
-            geekbench
-	    gh
-            gimp
-            git
-            glibc
-            go
-            gnome.gnome-font-viewer
-            gnome-network-displays
-            gnumake
-            gparted
-            grim
-            gtk3
-            home-manager
-            htop
-            hypridle
-            hyprland
-            hyprlock
-            hyprshade
-            icon-library
-            jack2
-            kicad
-            krita
-            libreoffice-fresh
-            libsecret
-            # libsForQt5.kdenlive
-            libvirt
-            lsd
-            lutris
-            lxappearance
-            lxqt.lxqt-policykit
-            mariadb
-            meson
-            netcat
-            # miraclecast
-            moonlight-qt
-            ninja
-            networkmanagerapplet
-	    neovim
-            nodejs_20
-            npins
-            obs-studio
-	    oh-my-zsh
-            openvpn
-            parsec-bin
-            pavucontrol
-            pcsx2
-            pipewire
-            prismlauncher # minecraft launcher
-            python3
-            python312Packages.pip
-            qemu_kvm
-            qjackctl
-            qpwgraph
-	    rofi
-            rustup
-            sddm
-            slurp
-            spotify
-            sqlite
-	    steam
-            swaybg
-            swayidle
-	    swaylock-effects
-	    terminator
-            thunderbird
-            tldr
-            tmux
-            tor
-            unzip
-            virt-manager
-            virtiofsd
-            vmware-workstation
-            vscode
-            waybar
-            wget
-            wireplumber
-            wireshark
-	    wlsunset
-            wofi
-            xdg-desktop-portal-gtk
-	    xfce.thunar
-            xfce.xfwm4
-            xwayland
-	    zsh
+    auto-cpufreq
+    blueman
+    brave
+    brightnessctl
+    btop
+    cargo
+    ciscoPacketTracer8
+    cmake
+    davinci-resolve
+    discord
+    distrobox
+    docker
+    fanctl
+    fastfetch 
+    feh
+    filezilla
+    firefox
+    fprintd
+    freerdp3
+    freetube
+    fwupd
+    fzf
+    gcc
+    geekbench
+    gh
+    gimp
+    git
+    glibc
+    go
+    gnome.gnome-font-viewer
+    gnome-network-displays
+    gnumake
+    gparted
+    grim
+    gtk3
+    home-manager
+    htop
+    hypridle
+    hyprland
+    hyprlock
+    hyprshade
+    icon-library
+    jack2
+    kicad
+    krita
+    libreoffice-fresh
+    libsecret
+    # libsForQt5.kdenlive
+    libvirt
+    lsd
+    lutris
+    lxappearance
+    lxqt.lxqt-policykit
+    mariadb
+    meson
+    netcat
+    # miraclecast
+    moonlight-qt
+    ninja
+    networkmanagerapplet
+    neovim
+    nodejs_20
+    npins
+    obs-studio
+    oh-my-zsh
+    openvpn
+    parsec-bin
+    pavucontrol
+    pcsx2
+    pipewire
+    prismlauncher # minecraft launcher
+    python3
+    python312Packages.pip
+    qemu_kvm
+    qjackctl
+    qpwgraph
+    rofi
+    rustup
+    sddm
+    slurp
+    spotify
+    sqlite
+    steam
+    swaybg
+    swayidle
+    swaylock-effects
+    terminator
+    thunderbird
+    tldr
+    tmux
+    tor
+    unzip
+    virt-manager
+    virtiofsd
+    vmware-workstation
+    vscode
+    waybar
+    wget
+    wireplumber
+    wireshark
+    wlsunset
+    wofi
+    xdg-desktop-portal-gtk
+    xfce.thunar
+    xfce.xfwm4
+    xwayland
+    zsh
 	];
-        programs.steam.enable = true;
-        virtualisation.vmware.host.enable = true;
-        virtualisation.spiceUSBRedirection.enable = true;
+  programs.steam.enable = true;
+  virtualisation.vmware.host.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
-        # Logitech Unifying
-        hardware.logitech.wireless.enable = true;
-        hardware.logitech.wireless.enableGraphical = true;
+  # Logitech Unifying
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
 
-        # Bluetooth
-        hardware.bluetooth.enable = true;
+  # Bluetooth
+  hardware.bluetooth.enable = true;
 
-        # Fprint Unlock
-        services.fprintd.enable = true;
+  # Fprint Unlock
+  services.fprintd.enable = true;
 
-        # FWUPD
-        services.fwupd.enable = true;
+  # FWUPD
+  services.fwupd.enable = true;
 
-        # Home Manager
+  # Home Manager
   #programs.home-manager.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
