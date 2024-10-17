@@ -179,6 +179,7 @@
     git
     glibc
     go
+    goverlay
     gnome.gnome-font-viewer
     gnome-network-displays
     gnumake
@@ -203,6 +204,7 @@
     lutris
     lxappearance
     lxqt.lxqt-policykit
+    mangohud
     mariadb
     meson
     netcat
