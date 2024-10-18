@@ -54,6 +54,7 @@
     shellAliases = {
       vim = "nvim";
       ll = "ls -la";
+      update = "sudo nixos-rebuild switch";
     };
     autosuggestion.enable = true;
     oh-my-zsh = {
