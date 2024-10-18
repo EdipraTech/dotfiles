@@ -1,27 +1,14 @@
-# ~/.config/polybar/sound.sh
-#!/bin/bash
+#!/run/current-system/sw/bin/bash
 
-function main() {
-    # Pipewire
-    SOURCE=$(pw-record --list-targets | sed -n 's/^*.*"\(.*\)" prio=.*$/\1/p')
-    SINK=$(pw-play --list-targets | sed -n 's/^*.*"\(.*\)" prio=.*$/\1/p')
-    VOLUME=$(pactl list sinks | sed -n "/${SINK}/,/Volume/ s!^[[:space:]]\+Volume:.* \([[:digit:]]\+\)%.*!\1!p")
-    IS_MUTED=$(pactl list sinks | sed -n "/${SINK}/,/Mute/ s/Mute: \(yes\)/\1/p")
+# Pipewire
+SOURCE=$(pamixer --list-sources | grep "Running" )
+VOLUME=$(pamixer --get-volume "${SOURCE}")
+SINK=$(pamixer --list-sinks | grep "Running")
 
-    action=$1
-    if [ "${action}" == "up" ]; then
-        pactl set-sink-volume @DEFAULT_SINK@ +10%
-    elif [ "${action}" == "down" ]; then
-        pactl set-sink-volume @DEFAULT_SINK@ -10%
-    elif [ "${action}" == "mute" ]; then
-        pactl set-sink-mute @DEFAULT_SINK@ toggle
-    else
-        if [ "${IS_MUTED}" != "" ]; then
-            echo " ${SOURCE} |   MUTED ${SINK}"
-        else
-            echo " ${SOURCE} |    ${VOLUME}% ${SINK}"
-        fi
-    fi
-}
-
-main $@
+if [ "${VOLUME}" == 0 ]; then
+    echo "  MUTED"
+    break
+else
+    echo "  ${VOLUME}%"
+    break
+fi

@@ -55,6 +55,7 @@
     hyprland
     hyprlock
     hyprshade
+    i3-rounded
     icon-library
     jack2
     kicad
@@ -76,6 +77,7 @@
     ninja
     networkmanagerapplet
     neovim
+    nerdfonts
     nitrogen
     nmap
     nodejs_20
@@ -83,13 +85,16 @@
     obs-studio
     oh-my-zsh
     openvpn
+    pamixer
     parsec-bin
     pavucontrol
     pcsx2
+    picom
     piper
     pipewire
     prismlauncher # minecraft launcher
     polybar
+    pulseaudio
     python3
     python312Packages.pip
     qemu_kvm

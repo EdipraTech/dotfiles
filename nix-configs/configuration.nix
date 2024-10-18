@@ -8,13 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./nix-configs/apps.nix
-      ./nix-configs/bspwm.nix
-      ./nix-configs/docker.nix
-      ./nix-configs/hyprland.nix
-      ./nix-configs/i3wm.nix
-      ./nix-configs/nvidia.nix
-      ./nix-configs/setup.nix
+      ./apps.nix
+      ./bspwm.nix
+      ./docker.nix
+      ./hyprland.nix
+      ./i3wm.nix
+      ./nvidia.nix
+      ./setup.nix
     ];
 
   # Bootloader.
